@@ -204,6 +204,7 @@ const PropertyModal = ({
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState('')
 
   const handleClose = useCallback(() => {
     setIsClosing(true)
@@ -224,17 +225,33 @@ const PropertyModal = ({
     }
   }, [handleClose, property.images.length])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
+    setError('')
+    setIsSuccess(false)
+
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'enquiry',
+          property: property.title,
+          ...formData
+        })
+      })
+
+      if (!response.ok) throw new Error('Failed to submit enquiry')
+
       setIsSuccess(true)
-      setTimeout(() => {
-        setIsSuccess(false)
-        setFormData({ name: '', email: '', phone: '' })
-      }, 2800)
-    }, 1200)
+      setFormData({ name: '', email: '', phone: '' })
+      setTimeout(() => setIsSuccess(false), 5000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -326,7 +343,7 @@ const PropertyModal = ({
               >
                 {property.status}
               </span>
-              <span className="px-3 py-1 bg-[#d4af37]/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">
+              <span className="px-3 py-1 bg-[#d4af37]/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm shadow-sm">
                 {property.badge}
               </span>
             </div>
@@ -419,6 +436,9 @@ const PropertyModal = ({
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-3.5">
+                    {error && (
+                      <div className="text-red-400 text-sm bg-red-900/30 px-3 py-2 rounded-lg">{error}</div>
+                    )}
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                       <input
@@ -434,10 +454,9 @@ const PropertyModal = ({
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                       <input
                         type="email"
-                        required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="Email Address"
+                        placeholder="Email Address (Optional)"
                         className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/10 rounded-xl focus:ring-1 focus:ring-[#d4af37] focus:border-[#d4af37] transition-all outline-none text-sm placeholder:text-white/40"
                       />
                     </div>
@@ -602,8 +621,12 @@ const PropertyCard = ({
           <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full truncate max-w-[120px]">
             {property.configShort}
           </span>
-          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">{property.area}</span>
-          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">{property.units}</span>
+          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+            {property.area}
+          </span>
+          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+            {property.units}
+          </span>
         </div>
 
         {/* CTA */}

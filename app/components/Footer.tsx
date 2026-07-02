@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
 import { 
   MapPin, Phone, Mail, Shield, Award, Users, Clock, ChevronRight
@@ -13,12 +12,19 @@ import {
 } from 'react-icons/fa'
 
 const Footer = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Explore Properties', href: '/explore' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Home', id: 'hero' },
+    { name: 'Properties', id: 'properties' },
+    { name: 'Blog', id: 'blog' },
+    { name: 'About Us', id: 'about' },
+    { name: 'Contact', id: 'contact' }
   ]
 
   const contactInfo = [
@@ -40,7 +46,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Brand Section */}
           <div className="space-y-5">
-            <Link href="/" className="block">
+            <button onClick={() => scrollToSection('hero')} className="block">
               <div className="relative w-[180px] h-[55px] sm:w-[200px] sm:h-[60px]">
                 <Image
                   src="/logo.png"
@@ -51,7 +57,7 @@ const Footer = () => {
                   priority
                 />
               </div>
-            </Link>
+            </button>
             <p className="text-gray-700 text-sm leading-relaxed max-w-xs">
               Crafting premium living spaces for those who appreciate the finer things in life.
             </p>
@@ -76,13 +82,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
+                  <button
+                    onClick={() => scrollToSection(link.id)}
                     className="flex items-center gap-2 text-gray-700 hover:text-[#d4af37] transition-colors duration-300 text-sm group"
                   >
                     <ChevronRight className="w-3 h-3 text-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity group-hover:translate-x-1 transition-transform" />
                     <span>{link.name}</span>
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -153,15 +159,15 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} <span className="text-[#d4af37] font-medium">VISTAAR ESTATE</span>. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link href="#" className="hover:text-[#d4af37] transition-colors duration-300">
+              <button className="hover:text-[#d4af37] transition-colors duration-300">
                 Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-[#d4af37] transition-colors duration-300">
+              </button>
+              <button className="hover:text-[#d4af37] transition-colors duration-300">
                 Terms of Service
-              </Link>
-              <Link href="#" className="hover:text-[#d4af37] transition-colors duration-300">
+              </button>
+              <button className="hover:text-[#d4af37] transition-colors duration-300">
                 Sitemap
-              </Link>
+              </button>
             </div>
           </div>
         </div>

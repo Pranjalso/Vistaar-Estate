@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom Scrollbar - Premium */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -81,26 +81,115 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4af37;
+  background: linear-gradient(to bottom, #d4af37, #b8942a);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8942a;
-}
-
-/* Smooth loading animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  background: linear-gradient(to bottom, #e8c84a, #d4af37);
 }
 
 /* Selection color */
 ::selection {
   background: #d4af37;
   color: #ffffff;
+}
+
+/* Scroll Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.visible {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-on-scroll.visible.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-on-scroll.visible.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-on-scroll.visible.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-on-scroll.visible.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-on-scroll.visible.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animate-on-scroll.visible.fade-left {
+  animation-name: fadeLeft;
+}
+
+.animate-on-scroll.visible.fade-right {
+  animation-name: fadeRight;
+}
+
+.animate-on-scroll.visible.scale-in {
+  animation-name: scaleIn;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

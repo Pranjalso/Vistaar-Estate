@@ -1,9 +1,17 @@
 'use client'
 
 import { Calendar, User, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+import { useInView } from '../hooks/useInView'
 
 const BlogSection = () => {
+  const { ref, isInView } = useInView({ threshold: 0.1, once: true })
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const posts = [
     {
       id: 1,
@@ -35,10 +43,10 @@ const BlogSection = () => {
   ]
 
   return (
-    <section className="section-padding bg-white" id="blog">
+    <section ref={ref} className="section-padding bg-white" id="blog">
       <div className="container-custom">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className={`text-center max-w-3xl mx-auto mb-12 animate-on-scroll ${isInView ? 'visible' : ''}`}>
           <span className="inline-block px-4 py-1 bg-[#d4af37]/10 text-[#d4af37] text-sm uppercase tracking-widest rounded-full mb-4">
             Our Blog
           </span>
@@ -52,8 +60,12 @@ const BlogSection = () => {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <div key={post.id} className="group bg-[#f5efe6] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+          {posts.map((post, idx) => (
+            <div 
+              key={post.id} 
+              className={`group bg-[#f5efe6] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-on-scroll ${isInView ? 'visible' : ''}`}
+              style={{ animationDelay: `${idx * 0.1}s` }}
+            >
               <div className="relative h-56 overflow-hidden">
                 <img 
                   src={post.image} 
@@ -86,27 +98,27 @@ const BlogSection = () => {
                   {post.excerpt}
                 </p>
 
-                <Link 
-                  href={`/blog/${post.id}`}
+                <button 
+                  onClick={() => scrollToSection('contact')} 
                   className="inline-flex items-center gap-2 text-[#d4af37] font-medium hover:text-[#b8942a] transition-colors group"
                 >
                   Read More
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </button>
               </div>
             </div>
           ))}
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-10">
-          <Link 
-            href="/blog"
+        <div className={`text-center mt-10 animate-on-scroll delay-300 ${isInView ? 'visible' : ''}`}>
+          <button 
+            onClick={() => scrollToSection('contact')} 
             className="inline-flex items-center gap-2 px-8 py-3 bg-[#d4af37] text-white rounded-full hover:bg-[#b8942a] transition-all duration-300 shadow-lg hover:shadow-xl font-medium"
           >
             View All Articles
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </button>
         </div>
       </div>
     </section>
