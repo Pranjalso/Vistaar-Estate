@@ -1,8 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { ClipboardEdit, PhoneCall, X, Send } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ClipboardEdit, PhoneCall, X, Send, AlertCircle, Check } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
 
 const FloatingContact = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -11,21 +17,97 @@ const FloatingContact = () => {
     email: "",
     phone: "",
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  // Reset form when modal opens/closes
+  useEffect(() => {
+    if (isFormOpen) {
+      setFormData({ name: "", email: "", phone: "" });
+      setErrors({});
+      setTouched({});
+      setIsSuccess(false);
+      setError("");
+    }
+  }, [isFormOpen]);
+
+  // Validation functions
+  const validateName = (name: string) => {
+    if (!name.trim()) return "Name is required";
+    if (name.trim().length < 2) return "Name must be at least 2 characters";
+    return "";
+  };
+
+  const validateEmail = (email: string) => {
+    if (!email.trim()) return ""; // optional
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return "Please enter a valid email address";
+    return "";
+  };
+
+  const validatePhone = (phone: string) => {
+    if (!phone.trim()) return "Phone number is required";
+    const cleanedPhone = phone.replace(/\D/g, "");
+    // Indian phone number: exactly 10 digits starting with 6-9
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (cleanedPhone.length !== 10) {
+      return "Phone number must be exactly 10 digits";
+    }
+    if (!phoneRegex.test(cleanedPhone)) {
+      return "Please enter a valid Indian phone number starting with 6-9";
+    }
+    return "";
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    if (touched[name]) {
+      let err = "";
+      if (name === "name") err = validateName(value);
+      if (name === "email") err = validateEmail(value);
+      if (name === "phone") err = validatePhone(value);
+      setErrors((prev) => ({ ...prev, [name]: err }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    
+    let err = "";
+    if (name === "name") err = validateName(value);
+    if (name === "email") err = validateEmail(value);
+    if (name === "phone") err = validatePhone(value);
+    setErrors((prev) => ({ ...prev, [name]: err }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const newErrors: FormErrors = {
+      name: validateName(formData.name),
+      email: validateEmail(formData.email),
+      phone: validatePhone(formData.phone),
+    };
+    
+    setErrors(newErrors);
+    setTouched({
+      name: true,
+      email: true,
+      phone: true,
+    });
+    
+    const hasErrors = Object.values(newErrors).some((err) => err);
+    if (hasErrors) return;
+    
     setIsSubmitting(true);
     setError("");
+    
     try {
       const response = await fetch("/api/submit-form", {
         method: "POST",
@@ -48,6 +130,13 @@ const FloatingContact = () => {
       setIsSubmitting(false);
     }
   };
+
+  const isFormValid = 
+    !errors.name && 
+    !errors.email && 
+    !errors.phone && 
+    formData.name.trim() && 
+    formData.phone.trim();
 
   const handleEnquiryClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -234,9 +323,7 @@ const FloatingContact = () => {
               {isSuccess ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Check className="w-8 h-8 text-green-500" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">Thank You!</h3>
                   <p className="text-sm text-gray-500 mt-1">We'll contact you soon.</p>
@@ -244,10 +331,12 @@ const FloatingContact = () => {
               ) : (
                 <>
                   {error && (
-                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
                       {error}
                     </div>
                   )}
+                  
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
                       Full Name <span className="text-red-500">*</span>
@@ -257,10 +346,20 @@ const FloatingContact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm"
+                      onBlur={handleBlur}
+                      className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm ${
+                        touched.name && errors.name 
+                          ? "border-red-300 focus:ring-red-300" 
+                          : "border-gray-200"
+                      }`}
                       placeholder="John Doe"
                     />
+                    {touched.name && errors.name && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
@@ -272,9 +371,20 @@ const FloatingContact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm"
+                      onBlur={handleBlur}
+                      className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm ${
+                        touched.email && errors.email 
+                          ? "border-red-300 focus:ring-red-300" 
+                          : "border-gray-200"
+                      }`}
                       placeholder="john@example.com"
                     />
+                    {touched.email && errors.email && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
@@ -286,16 +396,30 @@ const FloatingContact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm"
+                      onBlur={handleBlur}
+                      className={`w-full px-4 py-3 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all outline-none text-sm ${
+                        touched.phone && errors.phone 
+                          ? "border-red-300 focus:ring-red-300" 
+                          : "border-gray-200"
+                      }`}
                       placeholder="+91 98765 43210"
                     />
+                    {touched.phone && errors.phone && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 mt-2 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/30 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-2"
+                    disabled={isSubmitting || !isFormValid}
+                    className={`w-full py-3.5 mt-2 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 ${
+                      isSubmitting || !isFormValid 
+                        ? "opacity-50 cursor-not-allowed" 
+                        : "hover:shadow-lg hover:shadow-[#d4af37]/30 hover:scale-[1.02] active:scale-[0.98]"
+                    }`}
                   >
                     {isSubmitting ? (
                       <>

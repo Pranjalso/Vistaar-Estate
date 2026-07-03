@@ -1,190 +1,170 @@
 'use client'
 
-import { Calendar, User, ArrowRight, Tag } from 'lucide-react'
+import { Calendar, User, ArrowRight, Clock, Search, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
+import { blogPosts, getAllCategories } from '@/lib/blogData'
 
-export default function Blog() {
-  const posts = [
-    {
-      id: 1,
-      title: 'Top 10 Luxury Real Estate Trends in 2024',
-      excerpt: 'Discover the latest trends shaping the luxury real estate market, from smart homes to sustainable living.',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
-      date: 'June 15, 2024',
-      author: 'Arjun Mehta',
-      category: 'Market Trends',
-      readTime: '5 min read'
-    },
-    {
-      id: 2,
-      title: 'Why Invest in Farmlands? A Comprehensive Guide',
-      excerpt: 'Learn about the benefits of investing in farmlands and how they can be a valuable addition to your portfolio.',
-      image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80',
-      date: 'June 10, 2024',
-      author: 'Priya Sharma',
-      category: 'Investment',
-      readTime: '7 min read'
-    },
-    {
-      id: 3,
-      title: 'The Rise of Gated Communities in India',
-      excerpt: 'Explore why gated communities are becoming increasingly popular among homebuyers in urban areas.',
-      image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
-      date: 'June 5, 2024',
-      author: 'Vikram Singh',
-      category: 'Community Living',
-      readTime: '6 min read'
-    },
-    {
-      id: 4,
-      title: 'Sustainable Architecture: Building for the Future',
-      excerpt: 'How modern architecture is embracing sustainability and eco-friendly design principles.',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
-      date: 'May 28, 2024',
-      author: 'Ananya Reddy',
-      category: 'Architecture',
-      readTime: '4 min read'
-    },
-    {
-      id: 5,
-      title: '5 Tips for First-Time Home Buyers',
-      excerpt: 'Essential advice for first-time homebuyers to make informed decisions and avoid common pitfalls.',
-      image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80',
-      date: 'May 20, 2024',
-      author: 'Suresh Kumar',
-      category: 'Buying Tips',
-      readTime: '8 min read'
-    },
-    {
-      id: 6,
-      title: 'Luxury Amenities That Redefine Modern Living',
-      excerpt: 'From infinity pools to smart home automation, discover the amenities that make a property truly luxurious.',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80',
-      date: 'May 15, 2024',
-      author: 'Priya Sharma',
-      category: 'Amenities',
-      readTime: '5 min read'
-    }
-  ]
+export default function BlogPage() {
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [visiblePosts, setVisiblePosts] = useState(6)
+
+  const posts = blogPosts
+  const categories = getAllCategories()
+
+  const filteredPosts = posts.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const displayedPosts = filteredPosts.slice(0, visiblePosts)
+  const hasMore = visiblePosts < filteredPosts.length
 
   return (
-    <main className="pt-24 pb-16">
-      <div className="container-custom">
+    <main className="pt-28 pb-16 bg-gradient-to-b from-[#f8f5f0] to-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="inline-block px-4 py-1 bg-gold/10 text-gold text-sm uppercase tracking-widest rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 bg-[#d4af37]/10 text-[#d4af37] text-xs uppercase tracking-[0.3em] rounded-full mb-4 border border-[#d4af37]/20">
             Our Blog
           </span>
-          <h1 className="heading-primary mb-4">
-            Insights & <span className="text-gold">Updates</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#1a1a2e] mb-4 leading-tight">
+            Insights & <span className="text-[#d4af37] font-medium">Updates</span>
           </h1>
-          <p className="text-body">
+          <p className="text-gray-500 text-base sm:text-lg font-light leading-relaxed">
             Stay informed with the latest news, trends, and insights from the world of luxury real estate
           </p>
         </div>
 
-        {/* Featured Post */}
-        <div className="mb-12">
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="h-64 lg:h-auto overflow-hidden">
-                <img 
-                  src={posts[0].image} 
-                  alt={posts[0].title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+        {/* Search and Filter */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-6 mb-12">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50/80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#d4af37] focus:border-[#d4af37] transition-all outline-none text-sm text-gray-700"
                 />
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
-                  <span className="px-3 py-1 bg-gold/10 text-gold rounded-full">
-                    {posts[0].category}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    {posts[0].date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <User className="w-3 h-3" />
-                    {posts[0].author}
-                  </span>
-                </div>
-                <h2 className="text-2xl font-serif font-bold text-primary mb-3">
-                  {posts[0].title}
-                </h2>
-                <p className="text-body text-sm mb-4">
-                  {posts[0].excerpt}
-                </p>
-                <Link 
-                  href={`/blog/${posts[0].id}`}
-                  className="inline-flex items-center gap-2 text-gold font-medium hover:text-gold-dark transition-colors duration-300 group"
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-[#1a1a2e] text-white shadow-lg shadow-[#1a1a2e]/20'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                  }`}
                 >
-                  Read More 
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+                  {category}
+                </button>
+              ))}
             </div>
           </div>
+          
+          {/* Results Count */}
+          {filteredPosts.length > 0 && (
+            <div className="mt-4 text-sm text-gray-500 border-t border-gray-100 pt-4">
+              Showing <span className="font-semibold text-[#1a1a2e]">{filteredPosts.length}</span> articles
+            </div>
+          )}
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.slice(1).map((post) => (
-            <div key={post.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="px-3 py-1 bg-gold text-white text-xs font-medium rounded-full">
-                    {post.category}
-                  </span>
-                </div>
-              </div>
+        {filteredPosts.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayedPosts.map((post) => (
+                <div key={post.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100/50">
+                  <div className="relative h-56 overflow-hidden bg-gray-100">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1.5 bg-[#d4af37] text-white text-xs font-medium rounded-lg shadow-lg">
+                        {post.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <span className="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-[#1a1a2e] text-xs font-medium rounded-lg shadow-lg flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+                  </div>
 
-              <div className="p-5">
-                <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <User className="w-3 h-3" />
-                    {post.author}
-                  </span>
-                </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 text-[#d4af37]" />
+                        {post.date}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <User className="w-3.5 h-3.5 text-[#d4af37]" />
+                        {post.author}
+                      </span>
+                    </div>
 
-                <h3 className="text-lg font-serif font-bold text-primary mb-2">
-                  {post.title}
-                </h3>
-                <p className="text-body text-sm mb-3">
-                  {post.excerpt}
-                </p>
+                    <h3 className="text-xl font-serif font-bold text-[#1a1a2e] mb-2 group-hover:text-[#d4af37] transition-colors duration-300 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    {post.readTime}
-                  </span>
-                  <Link 
-                    href={`/blog/${post.id}`}
-                    className="inline-flex items-center gap-1 text-gold text-sm font-medium hover:text-gold-dark transition-colors duration-300 group"
-                  >
-                    Read More
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                    <Link 
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-[#d4af37] font-medium hover:text-[#b8942a] transition-colors duration-300 group/link"
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
-          <button className="px-12 py-4 border-2 border-gold text-gold rounded-full hover:bg-gold hover:text-white transition-all duration-300 font-medium">
-            Load More Articles
-          </button>
-        </div>
+            {/* Load More */}
+            {hasMore && (
+              <div className="text-center mt-12">
+                <button
+                  onClick={() => setVisiblePosts(prev => Math.min(prev + 6, filteredPosts.length))}
+                  className="inline-flex items-center gap-2 px-10 py-4 border-2 border-[#d4af37] text-[#d4af37] rounded-full hover:bg-[#d4af37] hover:text-white transition-all duration-300 font-medium text-sm group"
+                >
+                  Load More Articles
+                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-2xl font-serif text-[#1a1a2e] mb-2">No Articles Found</h3>
+            <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+            <button
+              onClick={() => {
+                setSearchTerm('')
+                setSelectedCategory('All')
+              }}
+              className="mt-4 px-6 py-2 bg-[#1a1a2e] text-white rounded-full hover:bg-[#2d2d44] transition-colors text-sm"
+            >
+              Clear Filters
+            </button>
+          </div>
+        )}
       </div>
     </main>
   )
