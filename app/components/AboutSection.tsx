@@ -1,218 +1,248 @@
 'use client'
 
-import { Award, Shield, Crown, TrendingUp, Heart, ArrowRight, CheckCircle, Building2 } from 'lucide-react'
-import { useState } from 'react'
-import { useInView } from '../hooks/useInView'
+import { Shield, Crown, Users, TrendingUp } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { motion, useAnimation, useInView } from 'framer-motion'
 
 const AboutSection = () => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false)
-  const { ref, isInView } = useInView({ threshold: 0.1, once: true })
+  const [isImage1Loaded, setIsImage1Loaded] = useState(false)
+  const [isImage2Loaded, setIsImage2Loaded] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 })
   
+  const controls = {
+    leftContent: useAnimation(),
+    rightContent: useAnimation(),
+    images: useAnimation(),
+  }
+
+  useEffect(() => {
+    if (isInView) {
+      controls.leftContent.start('visible')
+      controls.rightContent.start('visible')
+      controls.images.start('visible')
+    }
+  }, [isInView, controls])
+
   const features = [
-    { icon: Shield, text: 'Trust & Transparency' },
-    { icon: Crown, text: 'Uncompromising Quality' },
-    { icon: TrendingUp, text: 'Innovation & Growth' },
-    { icon: Heart, text: 'Client-Centric Approach' }
+    { 
+      icon: Shield, 
+      title: 'Trusted Expertise',
+      description: 'Guided by a legacy of integrity and deep-rooted knowledge in the global luxury market.'
+    },
+    { 
+      icon: Crown, 
+      title: 'Premium Properties',
+      description: 'Access to an elite collection of properties that embody architectural mastery and comfort.'
+    },
+    { 
+      icon: Users, 
+      title: 'Customer-Centric Service',
+      description: 'Personalized white-glove service tailored to the unique lifestyle requirements of every client.'
+    },
+    { 
+      icon: TrendingUp, 
+      title: 'Transparent Transactions',
+      description: 'Honest dealings and meticulous attention to legal details for complete peace of mind.'
+    }
   ]
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' as const }
+    }
+  }
+
+  const fadeLeftVariant = {
+    hidden: { opacity: 0, x: -40 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.8, ease: 'easeOut' as const }
+    }
+  }
+
+  const fadeRightVariant = {
+    hidden: { opacity: 0, x: 40 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.8, ease: 'easeOut' as const }
+    }
+  }
+
+  const staggerContainerVariant = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      }
+    }
+  }
+
+  const staggerItemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' as const }
+    }
+  }
+
+  const imageVariant = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 1.2, ease: 'easeOut' as const }
     }
   }
 
   return (
-    <section ref={ref} className="section-padding bg-[#f5efe6] overflow-hidden" id="about">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section 
+      ref={sectionRef} 
+      className="py-20 md:py-28 lg:py-36 bg-[#f5efe6] relative overflow-hidden" 
+      id="about"
+    >
+      {/* Background Decorations */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#d4af37]/[0.03] rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#d4af37]/[0.03] rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#d4af37]/[0.02] rounded-full blur-3xl" />
+        
+        {/* Decorative Line - Top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent" />
+      </div>
+
+      <div className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-20 max-w-[1400px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-24 items-start">
           
-          {/* Left Side - Image with Animations */}
-          <div className={`relative group animate-on-scroll fade-left ${isInView ? 'visible' : ''}`}>
-            {/* Main Image Container */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <div className="aspect-[4/3] relative bg-gradient-to-br from-[#d4af37]/20 to-[#b8942a]/10 overflow-hidden">
-                {/* Real Estate Image - Using img tag instead of next/image */}
-                <img
-                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop"
-                  alt="Luxury Real Estate Property"
-                  className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 ${
-                    isImageLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
-                  }`}
-                  onLoad={() => setIsImageLoaded(true)}
-                />
-                
-                {/* Image Loading Skeleton */}
-                {!isImageLoaded && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 to-[#b8942a]/5 animate-pulse">
-                    <div className="flex items-center justify-center h-full">
-                      <Building2 className="w-16 h-16 text-[#d4af37]/30 animate-pulse" />
-                    </div>
-                  </div>
-                )}
-
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Gold Accent Border */}
-                <div className="absolute inset-0 border-2 border-[#d4af37]/30 rounded-2xl pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Animated Floating Badge - Top Right */}
-            <div className="absolute -top-4 -right-4 lg:top-6 lg:right-6 bg-[#d4af37] text-white px-4 py-2 rounded-lg shadow-xl rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-110 z-10 animate-float">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 animate-pulse" />
-                <span className="font-semibold text-sm">10+ Years</span>
-              </div>
-            </div>
-
-            {/* Animated Floating Badge - Bottom Left */}
-            <div className="absolute -bottom-4 -left-4 lg:bottom-6 lg:left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg shadow-xl -rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-110 z-10">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-[#d4af37] animate-bounce" />
-                <span className="font-semibold text-sm text-[#1a1a2e]">500+ Clients</span>
-              </div>
-            </div>
-
-            {/* Decorative Animated Elements */}
-            <div className="absolute -z-10 -bottom-8 -right-8 w-32 h-32 border-4 border-[#d4af37]/20 rounded-full animate-spin-slow" />
-            <div className="absolute -z-10 -top-8 -left-8 w-24 h-24 border-4 border-[#d4af37]/10 rounded-full animate-spin-slow-reverse" />
-            
-            {/* Pulsing Ring */}
-            <div className="absolute -inset-4 rounded-2xl border-2 border-[#d4af37]/10 animate-pulse-ring" />
-          </div>
-
-          {/* Right Side - Content with Animations */}
-          <div className="space-y-6">
-            {/* Badge */}
-            <span className={`inline-block px-4 py-1 bg-[#d4af37]/10 text-[#d4af37] text-sm uppercase tracking-widest rounded-full animate-on-scroll ${isInView ? 'visible' : ''}`}>
-              About Vistaar Estate
-            </span>
-
+          {/* Left Column */}
+          <div className="space-y-10">
             {/* Heading */}
-            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-[#1a1a2e] leading-tight animate-on-scroll delay-100 ${isInView ? 'visible' : ''}`}>
-              Crafting Luxury Living <br />
-              <span className="text-[#d4af37] relative inline-block">
-                Since 2013
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#d4af37]/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-              </span>
-            </h2>
-
-            {/* Description */}
-            <div className={`space-y-3 text-[#2d2d44] animate-on-scroll delay-200 ${isInView ? 'visible' : ''}`}>
-              <p className="leading-relaxed">
-                VISTAAR ESTATE is synonymous with premium real estate, offering exclusive plots, 
-                farms, and flats that redefine luxury living.
-              </p>
-              <p className="leading-relaxed">
-                We transform visions into reality with unmatched elegance and precision, 
-                creating living spaces that are not just homes, but reflections of aspirations.
-              </p>
-            </div>
-
-            {/* Features Grid */}
-            <div className={`grid grid-cols-2 gap-3 pt-2 animate-on-scroll delay-300 ${isInView ? 'visible' : ''}`}>
-              {features.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="flex items-center gap-2 group cursor-pointer transform transition-all duration-300 hover:translate-x-1"
-                >
-                  <div className="p-1.5 rounded-full bg-[#d4af37]/10 group-hover:bg-[#d4af37]/20 transition-all duration-300 group-hover:scale-110">
-                    <item.icon className="w-4 h-4 text-[#d4af37] transition-transform duration-300 group-hover:rotate-12" />
-                  </div>
-                  <span className="text-sm text-[#1a1a2e] font-medium transition-colors duration-300 group-hover:text-[#d4af37]">
-                    {item.text}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Buttons */}
-            <div className={`flex flex-wrap gap-4 pt-4 animate-on-scroll delay-400 ${isInView ? 'visible' : ''}`}>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#d4af37] text-white rounded-full hover:bg-[#b8942a] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 font-medium group"
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#1a1a2e] rounded-full hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 font-medium border border-[#d4af37]/20 group"
-              >
-                Contact Us
-              </button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className={`flex items-center gap-6 pt-2 animate-on-scroll delay-500 ${isInView ? 'visible' : ''}`}>
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div 
-                      key={i} 
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8942a] border-2 border-white flex items-center justify-center text-xs font-semibold text-white shadow-lg transform transition-transform duration-300 hover:scale-110 hover:-translate-y-1"
-                      style={{ animationDelay: `${i * 0.1}s` }}
-                    >
-                      {i}
-                    </div>
-                  ))}
-                </div>
-                <span className="text-sm text-[#2d2d44]">
-                  <span className="font-bold text-[#1a1a2e]">500+</span> happy clients
+            <motion.div
+              variants={fadeUpVariant}
+              initial="hidden"
+              animate={controls.leftContent}
+              className="space-y-4"
+            >
+              <div className="inline-block">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] font-medium">
+                  About Vistaar Estates
                 </span>
               </div>
-              <div className="w-px h-8 bg-[#d4af37]/20" />
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <svg 
-                    key={i} 
-                    className="w-4 h-4 text-[#d4af37] fill-[#d4af37] animate-pulse" 
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921,1.603-.921,1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0,1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-                <span className="text-sm text-[#2d2d44] ml-1">4.9/5</span>
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#1a1a2e] leading-[1.08]">
+                Exceptional Living
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#e8c84a] to-[#b8942a]">
+                  Experiences
+                </span>
+              </h2>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              variants={fadeUpVariant}
+              initial="hidden"
+              animate={controls.leftContent}
+              transition={{ delay: 0.1 }}
+              className="text-base sm:text-lg text-[#2d2d44]/75 leading-relaxed max-w-lg"
+            >
+              Vistaar Estates represents the pinnacle of luxury real estate, where architectural heritage meets 
+              contemporary elegance. We specialize in curating an exclusive portfolio of residential and commercial 
+              properties that redefine the standard of excellence.
+            </motion.p>
+
+            {/* Overlapping Images */}
+            <motion.div 
+              variants={imageVariant}
+              initial="hidden"
+              animate={controls.images}
+              className="relative mt-6"
+            >
+              <div className="relative" style={{ height: '420px' }}>
+                {/* Main Image */}
+                <div className="absolute left-0 top-0 w-[75%] h-[85%] rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/10 hover:shadow-[#d4af37]/20 transition-shadow duration-700">
+                  <Image
+                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop"
+                    alt="Luxury property exterior"
+                    fill
+                    className={`object-cover transition-all duration-1000 ${
+                      isImage1Loaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
+                    } hover:scale-105`}
+                    onLoad={() => setIsImage1Loaded(true)}
+                    priority
+                  />
+                  {!isImage1Loaded && (
+                    <div className="absolute inset-0 bg-[#d4af37]/10 animate-pulse" />
+                  )}
+                </div>
+
+                {/* Secondary Image */}
+                <div className="absolute right-0 bottom-0 w-[60%] h-[65%] rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/10 border-[6px] border-[#f5efe6] hover:shadow-[#d4af37]/20 transition-shadow duration-700">
+                  <Image
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop"
+                    alt="Luxury interior"
+                    fill
+                    className={`object-cover transition-all duration-1000 ${
+                      isImage2Loaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
+                    } hover:scale-105`}
+                    onLoad={() => setIsImage2Loaded(true)}
+                  />
+                  {!isImage2Loaded && (
+                    <div className="absolute inset-0 bg-[#d4af37]/10 animate-pulse" />
+                  )}
+                </div>
+
+                {/* Gold Accent Line */}
+                <div className="absolute -bottom-3 left-0 w-20 h-0.5 bg-gradient-to-r from-[#d4af37] via-[#e8c84a] to-transparent" />
               </div>
-            </div>
+            </motion.div>
           </div>
+
+          {/* Right Column - Feature Items */}
+          <motion.div
+            variants={staggerContainerVariant}
+            initial="hidden"
+            animate={controls.rightContent}
+            className="space-y-6 md:space-y-7 lg:space-y-8"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={staggerItemVariant}
+                className="group flex gap-6 p-6 md:p-7 lg:p-8 rounded-2xl bg-white/70 backdrop-blur-sm border border-[#d4af37]/10 hover:border-[#d4af37]/30 hover:bg-white/90 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10 hover:-translate-y-1"
+              >
+                {/* Icon */}
+                <div className="flex-shrink-0 mt-1">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#d4af37]/10 to-[#b8942a]/5 flex items-center justify-center group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#d4af37]/20 transition-all duration-400">
+                    <feature.icon className="w-6 h-6 text-[#d4af37]" strokeWidth={1.8} />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-serif font-semibold text-[#1a1a2e] mb-1.5 group-hover:text-[#d4af37] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-[#2d2d44]/70 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* Custom Animations */}
-      <style>
-        {`
-          @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          
-          @keyframes spin-slow-reverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-          }
-          
-          @keyframes pulse-ring {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.05); opacity: 0; }
-          }
-          
-          .animate-spin-slow {
-            animation: spin-slow 20s linear infinite;
-          }
-          
-          .animate-spin-slow-reverse {
-            animation: spin-slow-reverse 25s linear infinite;
-          }
-          
-          .animate-pulse-ring {
-            animation: pulse-ring 3s ease-out infinite;
-          }
-        `}
-      </style>
+      {/* Decorative Bottom Line */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent" />
     </section>
   )
 }
