@@ -1,11 +1,11 @@
 'use client'
 
-import { 
-  MapPin, Bed, Bath, Ruler, ArrowRight, Sparkles, X, 
-  Phone, Mail, ChevronLeft, ChevronRight, 
-  Shield, ChevronDown, CheckCircle, 
-  Car, Search, Calendar, Users, Home, 
-  Building, Award, Eye, Waves, Lock, 
+import {
+  MapPin, Bed, Bath, Ruler, ArrowRight, Sparkles, X,
+  Phone, Mail, ChevronLeft, ChevronRight,
+  Shield, ChevronDown, CheckCircle,
+  Car, Search, Calendar, Users, Home,
+  Building, Award, Eye, Waves, Lock,
   Trees, Users2, Wifi, Coffee, Maximize2,
   Crown, Gem, Heart, Star
 } from 'lucide-react'
@@ -497,6 +497,374 @@ const PropertyCards = () => {
         .modal-landscape [role="button"] {
           cursor: pointer;
         }
+
+        /* --- RESPONSIVE MODAL STYLES --- */
+        /* Desktop: side-by-side (default from existing) */
+        @media (min-width: 768px) {
+          .modal-content-desktop {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+          }
+          .modal-content-mobile {
+            display: none !important;
+          }
+          .modal-image-panel-desktop {
+            width: 42%;
+            flex-shrink: 0;
+            position: relative;
+          }
+          .modal-details-panel-desktop {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+          }
+          .modal-mobile-hero {
+            display: none !important;
+          }
+          .modal-mobile-thumbnails {
+            display: none !important;
+          }
+          .modal-mobile-content {
+            display: none !important;
+          }
+        }
+
+        /* Mobile: stacked vertical layout */
+        @media (max-width: 767px) {
+          .modal-content-desktop {
+            display: none !important;
+          }
+          .modal-content-mobile {
+            display: flex !important;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            background: #ffffff;
+          }
+          .modal-image-panel-desktop {
+            display: none !important;
+          }
+          .modal-details-panel-desktop {
+            display: none !important;
+          }
+          
+          /* Hero image */
+          .modal-mobile-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            flex-shrink: 0;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+          }
+          .modal-mobile-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          
+          /* Close button floating on image */
+          .modal-mobile-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 30;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            color: #1A1A1A;
+          }
+          .modal-mobile-close:hover {
+            transform: scale(1.08);
+            background: #ffffff;
+          }
+          
+          /* Badges on image */
+          .modal-mobile-badges {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .modal-mobile-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: linear-gradient(135deg, #d4af37, #b8942a);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+          }
+          .modal-mobile-badge-gold {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+          }
+          
+          /* Thumbnails strip */
+          .modal-mobile-thumbnails {
+            display: flex;
+            gap: 8px;
+            padding: 12px 20px;
+            overflow-x: auto;
+            background: #faf8f4;
+            flex-shrink: 0;
+            scrollbar-width: none;
+          }
+          .modal-mobile-thumbnails::-webkit-scrollbar {
+            display: none;
+          }
+          .modal-mobile-thumb {
+            flex-shrink: 0;
+            width: 56px;
+            height: 44px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            opacity: 0.6;
+          }
+          .modal-mobile-thumb.active {
+            border-color: #d4af37;
+            opacity: 1;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+          }
+          .modal-mobile-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          
+          /* Mobile content with padding */
+          .modal-mobile-content {
+            padding: 20px 20px 24px;
+            flex: 1;
+            overflow-y: auto;
+            background: #ffffff;
+          }
+          
+          .modal-mobile-title {
+            font-size: 22px;
+            font-weight: 600;
+            font-family: 'Times New Roman', serif;
+            color: #1A1A1A;
+            line-height: 1.2;
+            margin-bottom: 4px;
+          }
+          
+          .modal-mobile-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 12px;
+          }
+          
+          .modal-mobile-price-card {
+            background: linear-gradient(135deg, #faf8f4, #f5f2eb);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .modal-mobile-price-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+          }
+          .modal-mobile-price-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1A1A1A;
+          }
+          
+          .modal-mobile-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+          }
+          .modal-mobile-spec {
+            background: #faf8f4;
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+          }
+          .modal-mobile-spec svg {
+            color: #d4af37;
+            margin-bottom: 4px;
+          }
+          .modal-mobile-spec-label {
+            font-size: 10px;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 500;
+          }
+          .modal-mobile-spec-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A1A;
+          }
+          
+          .modal-mobile-quote {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(212, 175, 55, 0.02));
+            border-left: 3px solid #d4af37;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+          }
+          .modal-mobile-quote p {
+            font-size: 14px;
+            color: #4A4A5A;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 0;
+          }
+          .modal-mobile-quote cite {
+            display: block;
+            font-size: 11px;
+            color: #d4af37;
+            font-weight: 600;
+            font-style: normal;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+          }
+          
+          .modal-mobile-amenities-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #1A1A1A;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+          }
+          .modal-mobile-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+          }
+          .modal-mobile-amenity {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #faf8f4;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #4A4A5A;
+            border: 1px solid rgba(0,0,0,0.04);
+          }
+          .modal-mobile-amenity svg {
+            color: #d4af37;
+            width: 14px;
+            height: 14px;
+          }
+          
+          .modal-mobile-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+          }
+          .modal-mobile-actions button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            transition: all 0.25s ease;
+          }
+          .modal-mobile-btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8942a);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
+          }
+          .modal-mobile-btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.35);
+          }
+          .modal-mobile-btn-secondary {
+            background: #1A1A1A;
+            color: #fff;
+          }
+          .modal-mobile-btn-secondary:hover {
+            background: #2a2a2a;
+          }
+          
+          .modal-mobile-trust {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            font-size: 11px;
+            color: #9CA3AF;
+          }
+          .modal-mobile-trust span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+          }
+          .modal-mobile-trust svg {
+            color: #d4af37;
+            width: 14px;
+            height: 14px;
+          }
+        }
+
+        /* Tablet (768–1023px): keep side-by-side but with optimized spacing */
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .modal-landscape {
+            aspect-ratio: 16 / 10;
+            min-height: 420px;
+            max-height: 85vh;
+          }
+          .modal-content-desktop .modal-image-panel-desktop {
+            width: 38%;
+          }
+          .modal-content-desktop .modal-details-panel-desktop {
+            padding: 0 4px;
+          }
+          .modal-content-desktop .modal-details-panel-desktop .grid {
+            gap: 4px;
+          }
+        }
       `}</style>
 
       <section ref={ref} id="properties" className="py-16 md:py-24 bg-[#FAF8F4] relative overflow-hidden">
@@ -807,7 +1175,7 @@ const PropertyCards = () => {
         </div>
       </section>
 
-      {/* STUNNING LANDSCAPE MODAL - OPTIMIZED FOR LARGE SCREENS */}
+      {/* MODAL - Responsive: Desktop side-by-side, Mobile stacked */}
       <AnimatePresence>
         {selectedProperty && (
           <motion.div
@@ -830,39 +1198,23 @@ const PropertyCards = () => {
               exit={{ opacity: 0, scale: 0.93, y: 20 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Gold Top Strip - Premium */}
+              {/* Gold Top Strip */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#b8942a] via-[#e8c84a] to-[#b8942a] z-40" />
-
-              {/* Glowing Gold Accent */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent blur-sm z-40" />
 
-              {/* Close Button - Premium Glass */}
-              <button
-                onClick={closePropertyModal}
-                className="absolute top-3 right-3 z-40 w-10 h-10 bg-white/95 hover:bg-white backdrop-blur-xl text-[#1A1A1A] rounded-full flex items-center justify-center shadow-xl border border-white/50 hover:scale-110 hover:rotate-90 transition-all duration-300 group"
-                aria-label="Close"
-              >
-                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-              </button>
-
-              {/* LANDSCAPE LAYOUT - Always Side by Side */}
-              <div className="flex h-full">
-
-                {/* LEFT: Image Panel - Premium Gallery */}
-                <div className="relative w-[42%] flex-shrink-0 bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
-                  {/* Main Image with Zoom Effect */}
+              {/* --- DESKTOP LAYOUT (≥768px) --- */}
+              <div className="modal-content-desktop h-full">
+                {/* Left: Image Panel */}
+                <div className="modal-image-panel-desktop relative bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
                   <img
                     key={currentImageIndex}
                     src={selectedProperty.images[currentImageIndex]}
                     alt={selectedProperty.title}
                     className="modal-img absolute inset-0 w-full h-full object-cover"
                   />
-                  
-                  {/* Premium Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
 
-                  {/* Image Navigation Controls - Premium */}
                   {selectedProperty.images.length > 1 && (
                     <>
                       <button
@@ -880,9 +1232,7 @@ const PropertyCards = () => {
                     </>
                   )}
 
-                  {/* Image Indicators - Premium Dots + Thumbnails */}
                   <div className="absolute bottom-0 left-0 right-0 z-20 px-3 pb-3">
-                    {/* Dots - Always Visible */}
                     <div className="flex items-center justify-center gap-1.5 mb-2">
                       {selectedProperty.images.map((_: any, idx: number) => (
                         <button
@@ -896,7 +1246,6 @@ const PropertyCards = () => {
                         />
                       ))}
                     </div>
-                    {/* Thumbnails - Desktop Only */}
                     <div className="flex gap-1.5 justify-center">
                       {selectedProperty.images.map((img: string, idx: number) => (
                         <button
@@ -914,7 +1263,6 @@ const PropertyCards = () => {
                     </div>
                   </div>
 
-                  {/* Premium Badges */}
                   <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-20">
                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white text-[9px] font-bold uppercase tracking-[0.1em] rounded-full shadow-lg">
                       <Crown className="w-2.5 h-2.5" />
@@ -926,18 +1274,23 @@ const PropertyCards = () => {
                     </span>
                   </div>
 
-                  {/* Price Badge - Premium */}
                   <div className="absolute bottom-24 right-3 z-20">
                     <div className="bg-white/95 backdrop-blur-2xl px-4 py-2 rounded-2xl shadow-2xl border border-white/20">
                       <span className="text-[#1A1A1A] font-bold text-sm md:text-base">{selectedProperty.price}</span>
                     </div>
                   </div>
+
+                  <button
+                    onClick={closePropertyModal}
+                    className="absolute top-3 right-3 z-40 w-10 h-10 bg-white/95 hover:bg-white backdrop-blur-xl text-[#1A1A1A] rounded-full flex items-center justify-center shadow-xl border border-white/50 hover:scale-110 hover:rotate-90 transition-all duration-300 group"
+                    aria-label="Close"
+                  >
+                    <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                  </button>
                 </div>
 
-                {/* RIGHT: Content Panel - Premium Design */}
-                <div className="flex-1 flex flex-col bg-gradient-to-b from-white to-[#FAF8F4] overflow-hidden min-w-0">
-
-                  {/* Header - Premium */}
+                {/* Right: Details Panel */}
+                <div className="modal-details-panel-desktop bg-gradient-to-b from-white to-[#FAF8F4] overflow-hidden min-w-0">
                   <div className="px-6 pt-5 pb-3 border-b border-gray-100/80 flex-shrink-0">
                     <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A1A1A] leading-tight pr-4">
                       {selectedProperty.title}
@@ -952,7 +1305,6 @@ const PropertyCards = () => {
                     </div>
                   </div>
 
-                  {/* Specs - Premium Grid */}
                   <div className="grid grid-cols-4 gap-2 px-6 py-3 flex-shrink-0">
                     {[
                       { icon: Bed, label: 'Beds', value: selectedProperty.bedrooms },
@@ -971,7 +1323,6 @@ const PropertyCards = () => {
                     ))}
                   </div>
 
-                  {/* Description - Premium Quote */}
                   <div className="mx-6 mb-2 bg-gradient-to-r from-[#d4af37]/8 via-[#d4af37]/4 to-transparent rounded-xl px-4 py-3 border-l-[3px] border-[#d4af37]/40 flex-shrink-0">
                     <p className="text-[#4A4A5A] text-sm leading-relaxed italic line-clamp-2">
                       &ldquo;{selectedProperty.description}&rdquo;
@@ -979,7 +1330,6 @@ const PropertyCards = () => {
                     <p className="text-[10px] text-[#d4af37] font-semibold mt-1 uppercase tracking-wider">— {selectedProperty.builder}</p>
                   </div>
 
-                  {/* Amenities - Premium Pills */}
                   <div className="px-6 mb-2 flex-shrink-0">
                     <div className="flex items-center gap-1.5 mb-2">
                       <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
@@ -1003,10 +1353,8 @@ const PropertyCards = () => {
                     </div>
                   </div>
 
-                  {/* Spacer */}
                   <div className="flex-1 min-h-0" />
 
-                  {/* CTAs - Premium */}
                   <div className="px-6 pb-5 pt-3 border-t border-gray-100 flex-shrink-0">
                     <div className="flex gap-3 mb-2">
                       <button
@@ -1028,8 +1376,6 @@ const PropertyCards = () => {
                         Enquire
                       </button>
                     </div>
-                    
-                    {/* Trust Badges - Premium */}
                     <div className="flex items-center justify-center gap-4 text-[11px] text-[#9CA3AF]">
                       <span className="flex items-center gap-1.5">
                         <Shield className="w-3 h-3 text-[#d4af37]" />
@@ -1047,9 +1393,160 @@ const PropertyCards = () => {
                       </span>
                     </div>
                   </div>
-
                 </div>
               </div>
+
+              {/* --- MOBILE LAYOUT (≤767px) --- */}
+              <div className="modal-content-mobile h-full">
+                {/* Hero Image */}
+                <div className="modal-mobile-hero">
+                  <img
+                    key={currentImageIndex}
+                    src={selectedProperty.images[currentImageIndex]}
+                    alt={selectedProperty.title}
+                  />
+                  {/* Badges */}
+                  <div className="modal-mobile-badges">
+                    <span className="modal-mobile-badge">
+                      <Crown className="w-3 h-3" />
+                      {selectedProperty.badge}
+                    </span>
+                    <span className="modal-mobile-badge modal-mobile-badge-gold">
+                      <Gem className="w-3 h-3 text-[#d4af37]" />
+                      {selectedProperty.status}
+                    </span>
+                  </div>
+                  {/* Close Button */}
+                  <button
+                    onClick={closePropertyModal}
+                    className="modal-mobile-close"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  {/* Image Navigation Arrows */}
+                  {selectedProperty.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); prevImage() }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all duration-200 border border-white/10"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); nextImage() }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all duration-200 border border-white/10"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Thumbnails */}
+                <div className="modal-mobile-thumbnails">
+                  {selectedProperty.images.map((img: string, idx: number) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`modal-mobile-thumb ${currentImageIndex === idx ? 'active' : ''}`}
+                    >
+                      <img src={img} alt="" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Content */}
+                <div className="modal-mobile-content">
+                  <h2 className="modal-mobile-title">{selectedProperty.title}</h2>
+                  <div className="modal-mobile-location">
+                    <MapPin className="w-4 h-4 text-[#d4af37]" />
+                    <span>{selectedProperty.location}</span>
+                    <span className="ml-auto flex items-center gap-1 text-xs text-[#6B7280]">
+                      <Calendar className="w-3 h-3 text-[#d4af37]" />
+                      {selectedProperty.completion}
+                    </span>
+                  </div>
+
+                  {/* Price Card */}
+                  <div className="modal-mobile-price-card">
+                    <span className="modal-mobile-price-label">Price Range</span>
+                    <span className="modal-mobile-price-value">{selectedProperty.price}</span>
+                  </div>
+
+                  {/* Specs Grid */}
+                  <div className="modal-mobile-specs">
+                    {[
+                      { icon: Bed, label: 'Beds', value: selectedProperty.bedrooms },
+                      { icon: Bath, label: 'Baths', value: selectedProperty.bathrooms },
+                      { icon: Maximize2, label: 'Sq.ft', value: selectedProperty.sqft },
+                      { icon: Car, label: 'Parking', value: selectedProperty.parking },
+                    ].map((item, idx) => (
+                      <div key={idx} className="modal-mobile-spec">
+                        <item.icon className="w-5 h-5 mx-auto" />
+                        <div className="modal-mobile-spec-label">{item.label}</div>
+                        <div className="modal-mobile-spec-value">{item.value}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <div className="modal-mobile-quote">
+                    <p>&ldquo;{selectedProperty.description}&rdquo;</p>
+                    <cite>— {selectedProperty.builder}</cite>
+                  </div>
+
+                  {/* Amenities */}
+                  <div className="modal-mobile-amenities-title">
+                    <Sparkles className="w-4 h-4 text-[#d4af37]" />
+                    Amenities
+                  </div>
+                  <div className="modal-mobile-amenities">
+                    {selectedProperty.amenities.map((amenity: string, idx: number) => (
+                      <span key={idx} className="modal-mobile-amenity">
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        {amenity}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="modal-mobile-actions">
+                    <button onClick={handleCall} className="modal-mobile-btn-primary">
+                      <Phone className="w-4 h-4" />
+                      Call Now
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEnquiryProperty(selectedProperty.title)
+                        setIsEnquiryModalOpen(true)
+                        closePropertyModal()
+                      }}
+                      className="modal-mobile-btn-secondary"
+                    >
+                      <Mail className="w-4 h-4" />
+                      Enquire
+                    </button>
+                  </div>
+
+                  {/* Trust Badges */}
+                  <div className="modal-mobile-trust">
+                    <span>
+                      <Shield className="w-3.5 h-3.5" />
+                      Verified
+                    </span>
+                    <span>
+                      <Award className="w-3.5 h-3.5" />
+                      RERA
+                    </span>
+                    <span>
+                      <Star className="w-3.5 h-3.5 fill-[#d4af37]" />
+                      4.9★
+                    </span>
+                  </div>
+                </div>
+              </div>
+
             </motion.div>
           </motion.div>
         )}
