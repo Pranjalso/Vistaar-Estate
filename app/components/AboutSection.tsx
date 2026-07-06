@@ -132,7 +132,7 @@ const AboutSection = () => {
               animate={controls.leftContent}
               className="space-y-4 text-center lg:text-left"
             >
-              <h2 className="font-serif text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#1a1a2e] leading-[1.08]">
+              <h2 className="font-serif text-3xl font-bold text-[#1a1a2e] leading-[1.08]">
                 Exceptional Living
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#e8c84a] to-[#b8942a]">

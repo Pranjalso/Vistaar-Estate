@@ -251,7 +251,7 @@ const BlogSection = () => {
             {/* Main Heading */}
             <motion.h2 
               variants={headingContainerVariants}
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#1a1a2e] leading-[1.15] sm:leading-[1.1]"
+              className="text-3xl font-serif font-light text-[#1a1a2e] leading-[1.15] sm:leading-[1.1]"
             >
               Insights & <br className="hidden xs:block" />
               <span className="relative inline-block">
@@ -275,7 +275,7 @@ const BlogSection = () => {
           {/* Right Side - Navigation Controls */}
           <motion.div 
             variants={controlsVariants}
-            className="flex items-center gap-2 sm:gap-3 flex-shrink-0 self-start lg:self-end"
+            className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-auto"
           >
             <button
               onClick={scrollPrev}

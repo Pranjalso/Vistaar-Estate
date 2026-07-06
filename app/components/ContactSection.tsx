@@ -312,7 +312,7 @@ const ContactSection = () => {
               className="space-y-5 text-center lg:text-left"
             >
 
-              <h2 className="font-serif text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold text-[#1a1a2e] leading-[1.05]">
+              <h2 className="font-serif text-3xl font-bold text-[#1a1a2e] leading-[1.05]">
                 {"Let's Start a"}
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#e8c84a] to-[#b8942a]">
@@ -322,8 +322,7 @@ const ContactSection = () => {
               <div className="w-20 h-0.5 bg-gradient-to-r from-[#d4af37] to-transparent mx-auto lg:mx-0" />
               <p className="text-base sm:text-lg text-[#2d2d44]/65 leading-relaxed max-w-md mx-auto lg:mx-0">
                 Our team of experts is here to help you find your dream
-                property. Reach out through any channel — we respond within{" "}
-                <span className="text-[#b8942a] font-medium">2 hours</span>.
+                property. Reach out through any channel.
               </p>
             </motion.div>
 
@@ -553,9 +552,6 @@ const ContactSection = () => {
                           </span>
                         </h3>
                       </div>
-                      <p className="text-sm text-[#2d2d44]/40 font-light">
-                        Fields marked <span className="text-[#d4af37]">*</span> are required &middot; We respond within 2 hours
-                      </p>
                     </div>
 
                     {error && (
@@ -756,7 +752,7 @@ const ContactSection = () => {
                         <button
                           type="submit"
                           disabled={isSubmitting || !isFormValid}
-                          className={`group relative w-full px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white rounded-full font-medium text-base flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden ${
+                          className={`group relative w-auto mx-auto sm:mx-0 px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white rounded-full font-medium text-sm flex items-center justify-center gap-2.5 transition-all duration-500 overflow-hidden ${
                             isSubmitting || !isFormValid
                               ? "opacity-50 cursor-not-allowed"
                               : "hover:shadow-2xl hover:shadow-[#d4af37]/40 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"

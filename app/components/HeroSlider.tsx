@@ -105,7 +105,7 @@ const HeroSlider = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 animate-fade-in-up animation-delay-100">
+            <h1 className="font-serif text-5xl font-bold text-white leading-[1.1] mb-4 animate-fade-in-up animation-delay-100">
               <span className="block">Discover</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-[#e8c84a]">
                 Extraordinary

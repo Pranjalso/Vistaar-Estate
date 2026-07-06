@@ -333,12 +333,12 @@ export default function BlogPostPage() {
         }
       `}</style>
 
-      <main className="pt-20 pb-16 bg-[#f8f5f0] min-h-screen relative overflow-hidden">
+      <main className="pt-20 pb-16 bg-[#f8f5f0] min-h-screen relative overflow-hidden overflow-x-hidden">
         {/* Background Decorative Elements */}
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#d4af37]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#d4af37]/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -357,7 +357,7 @@ export default function BlogPostPage() {
 
           {/* Compact Hero Section */}
           <motion.div 
-            className="relative rounded-3xl overflow-hidden shadow-lg mb-10"
+            className="relative w-full rounded-3xl overflow-hidden shadow-lg mb-10"
             initial="hidden"
             animate="visible"
             variants={heroVariants}
@@ -394,7 +394,7 @@ export default function BlogPostPage() {
 
                 <motion.h1 
                   variants={titleVariants}
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-[1.15] max-w-3xl"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-[1.15] max-w-full"
                 >
                   {post.title.split(' ').map((word, i) => {
                     if (word.toLowerCase() === 'luxury' || word.toLowerCase() === 'exclusive' || word.toLowerCase() === 'premium') {
@@ -421,7 +421,7 @@ export default function BlogPostPage() {
             {/* Author & Share - Minimal */}
             <motion.div 
               variants={contentVariants}
-              className="flex items-center justify-between pb-6 mb-8 border-b border-gray-200/30"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 mb-8 border-b border-gray-200/30"
             >
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8942a] flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-[#d4af37]/20 flex-shrink-0">
@@ -431,18 +431,20 @@ export default function BlogPostPage() {
                   <p className="font-serif font-medium text-[#1a1a2e] text-sm">{post.author}</p>
                 </div>
               </div>
-              <button
-                onClick={handleShare}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-[#d4af37] hover:bg-[#d4af37]/10 rounded-full transition-all duration-300 text-xs font-medium"
-              >
-                <Share2 className="w-3.5 h-3.5" />
-                Share
-              </button>
-              {copied && (
-                <span className="text-[10px] text-[#d4af37] font-medium ml-2">
-                  Copied!
-                </span>
-              )}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={handleShare}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-[#d4af37] hover:bg-[#d4af37]/10 rounded-full transition-all duration-300 text-xs font-medium"
+                >
+                  <Share2 className="w-3.5 h-3.5" />
+                  Share
+                </button>
+                {copied && (
+                  <span className="text-[10px] text-[#d4af37] font-medium">
+                    Copied!
+                  </span>
+                )}
+              </div>
             </motion.div>
 
             {/* Article Body */}
@@ -464,7 +466,7 @@ export default function BlogPostPage() {
               variants={sectionVariants}
             >
               {/* Section Header */}
-              <motion.div variants={headingVariants} className="flex items-center justify-between mb-6">
+              <motion.div variants={headingVariants} className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
                 <div>
                   <h2 className="text-xl sm:text-2xl font-serif font-light text-[#1a1a2e]">
                     Related Articles
@@ -518,7 +520,7 @@ export default function BlogPostPage() {
                 {/* Carousel */}
                 <div 
                   ref={carouselRef}
-                  className="hide-scrollbar flex gap-4 sm:gap-5 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-smooth"
+                  className="hide-scrollbar flex gap-4 sm:gap-5 overflow-x-auto pb-4 px-4 sm:px-0 scroll-smooth w-full"
                   style={{
                     scrollSnapType: 'x mandatory',
                   }}
@@ -527,7 +529,7 @@ export default function BlogPostPage() {
                     <motion.article
                       key={relatedPost.id}
                       variants={cardVariants}
-                      className="group flex-shrink-0 w-[220px] sm:w-[240px] lg:w-[260px] bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1.5 border border-white/50 hover:border-[#d4af37]/10 scroll-snap-align-start"
+                      className="group flex-shrink-0 min-w-[85vw] sm:min-w-[240px] md:min-w-[260px] lg:min-w-[280px] bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1.5 border border-white/50 hover:border-[#d4af37]/10 scroll-snap-align-start"
                       style={{
                         scrollSnapAlign: 'start',
                       }}
