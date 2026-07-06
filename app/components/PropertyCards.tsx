@@ -6,7 +6,8 @@ import {
   Shield, ChevronDown, CheckCircle, 
   Car, Search, Calendar, Users, Home, 
   Building, Award, Eye, Waves, Lock, 
-  Trees, Users2, Wifi, Coffee, Maximize2
+  Trees, Users2, Wifi, Coffee, Maximize2,
+  Crown, Gem, Heart, Star
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useInView } from '../hooks/useInView'
@@ -69,13 +70,13 @@ const PropertyCards = () => {
       price: '₹2.50 Cr - ₹5.80 Cr',
       priceMin: 250,
       priceMax: 580,
-      description: 'A masterpiece of contemporary architecture with panoramic views of the city skyline. Designed by world-renowned architects, this residence offers unparalleled luxury and sophistication.',
+      description: 'A masterpiece of contemporary architecture with panoramic views of the city skyline.',
       image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
       ],
       bedrooms: 4,
       bathrooms: 5,
@@ -96,13 +97,13 @@ const PropertyCards = () => {
       price: '₹3.80 Cr - ₹7.20 Cr',
       priceMin: 380,
       priceMax: 720,
-      description: 'An alpine retreat redefined with brutalist elegance and unparalleled panoramic views. Experience the pinnacle of modern living in this architectural marvel.',
+      description: 'An alpine retreat redefined with brutalist elegance and unparalleled panoramic views.',
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
       ],
       bedrooms: 5,
       bathrooms: 6,
@@ -123,13 +124,13 @@ const PropertyCards = () => {
       price: '₹4.50 Cr - ₹8.90 Cr',
       priceMin: 450,
       priceMax: 890,
-      description: 'A historic estate seamlessly blended with modern pavilions, set amidst private woodland. Where heritage meets contemporary luxury in perfect harmony.',
+      description: 'A historic estate seamlessly blended with modern pavilions, set amidst private woodland.',
       image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80',
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
       ],
       bedrooms: 6,
       bathrooms: 7,
@@ -150,13 +151,13 @@ const PropertyCards = () => {
       price: '₹2.80 Cr - ₹4.80 Cr',
       priceMin: 280,
       priceMax: 480,
-      description: 'An exquisite lakeside property with private garden and breathtaking views. Designed for those who appreciate the finer things in life.',
+      description: 'An exquisite lakeside property with private garden and breathtaking views.',
       image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
+        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
       ],
       bedrooms: 4,
       bathrooms: 4,
@@ -177,13 +178,13 @@ const PropertyCards = () => {
       price: '₹8.50 Cr - ₹12.50 Cr',
       priceMin: 850,
       priceMax: 1250,
-      description: 'A stunning penthouse with panoramic sea views and private rooftop pool. The epitome of urban luxury living.',
+      description: 'A stunning penthouse with panoramic sea views and private rooftop pool.',
       image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
       ],
       bedrooms: 3,
       bathrooms: 4,
@@ -204,13 +205,13 @@ const PropertyCards = () => {
       price: '₹1.90 Cr - ₹3.80 Cr',
       priceMin: 190,
       priceMax: 380,
-      description: 'A Mediterranean masterpiece featuring private beach access and lush gardens. Where every day feels like a vacation.',
+      description: 'A Mediterranean masterpiece featuring private beach access and lush gardens.',
       image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
       images: [
-        'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80',
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80',
-        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80',
-        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
+        'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+        'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
       ],
       bedrooms: 4,
       bathrooms: 4,
@@ -353,7 +354,7 @@ const PropertyCards = () => {
       scale: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
         ease: 'easeOut' as const,
       },
     },
@@ -368,42 +369,9 @@ const PropertyCards = () => {
     },
   }
 
-  const imageVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 20 : -20,
-      opacity: 0,
-      scale: 0.98,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut' as const,
-      },
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 20 : -20,
-      opacity: 0,
-      scale: 0.98,
-      transition: {
-        duration: 0.4,
-        ease: 'easeOut' as const,
-      },
-    }),
-  }
-
   return (
     <>
       <style jsx global>{`
-        .modal-scroll {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .modal-scroll::-webkit-scrollbar {
-          display: none;
-        }
         .no-scroll {
           overflow: hidden !important;
         }
@@ -480,17 +448,54 @@ const PropertyCards = () => {
           box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
         }
-        .modal-close-btn {
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-        }
         .spec-card {
           transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         .spec-card:hover {
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-          border-color: #d4af37/30;
+        }
+        /* Thumbnail images in modal */
+        .thumb-img {
+          transition: all 0.25s ease;
+        }
+        .thumb-img:hover {
+          transform: scale(1.05);
+        }
+        /* Modal image transition */
+        .modal-img {
+          transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease;
+        }
+        .modal-img:hover {
+          transform: scale(1.04);
+        }
+        /* Landscape modal on all screens - FIXED FOR LARGE SCREENS */
+        .modal-landscape {
+          aspect-ratio: 16 / 9;
+          max-height: 85vh;
+          width: 100%;
+          max-width: 1024px;
+          height: auto;
+          min-height: 480px;
+          max-height: 560px;
+        }
+        @media (max-width: 1024px) {
+          .modal-landscape {
+            max-height: 80vh;
+            min-height: 400px;
+          }
+        }
+        @media (max-width: 640px) {
+          .modal-landscape {
+            aspect-ratio: 16 / 10;
+            max-height: 95vh;
+            min-height: 320px;
+          }
+        }
+        /* Cursor pointer for all interactive modal elements */
+        .modal-landscape button,
+        .modal-landscape [role="button"] {
+          cursor: pointer;
         }
       `}</style>
 
@@ -508,10 +513,6 @@ const PropertyCards = () => {
             variants={containerVariants}
           >
             <motion.div variants={headingVariants} className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div className="inline-flex items-center gap-3 px-5 py-2 bg-gradient-to-r from-[#d4af37]/10 to-[#d4af37]/5 text-[#d4af37] text-[11px] uppercase tracking-[0.3em] rounded-full mb-4 border border-[#d4af37]/20 font-medium">
-                <Sparkles className="w-4 h-4" />
-                Featured Properties
-              </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#1A1A1A] mb-3 leading-[1.1] max-w-4xl">
                 Discover Luxury Homes
                 <br />
@@ -759,7 +760,7 @@ const PropertyCards = () => {
                           e.stopPropagation()
                           openPropertyModal(property)
                         }}
-                        className="view-details-btn group inline-flex items-center gap-1.5 px-4 py-1.5 bg-white border border-[#d4af37]/30 rounded-full text-xs font-medium text-[#1A1A1A] transition-all duration-300"
+                        className="view-details-btn group inline-flex items-center gap-1.5 px-4 py-1.5 bg-white border border-[#d4af37]/30 rounded-full text-xs font-medium text-[#1A1A1A] transition-all duration-300 cursor-pointer"
                       >
                         View Details
                         <ArrowRight className="w-3.5 h-3.5 arrow-icon" />
@@ -806,334 +807,247 @@ const PropertyCards = () => {
         </div>
       </section>
 
-      {/* Premium Property Detail Modal */}
+      {/* STUNNING LANDSCAPE MODAL - OPTIMIZED FOR LARGE SCREENS */}
       <AnimatePresence>
         {selectedProperty && (
-          <motion.div 
-            className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={modalVariants}
+          <motion.div
+            className="fixed inset-0 z-[99999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             onClick={(e) => {
               if (e.target === e.currentTarget) closePropertyModal()
             }}
           >
-            <div className="absolute inset-0 bg-[#0F0F14]/65 backdrop-blur-xl" />
-            
-            <motion.div 
-              className="relative w-full max-w-7xl bg-white rounded-3xl lg:rounded-4xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.12)] max-h-[95vh] lg:max-h-[92vh]"
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            {/* Premium Backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a12]/92 via-[#1a1a1a]/85 to-[#0a0a12]/92 backdrop-blur-xl" onClick={closePropertyModal} />
+
+            <motion.div
+              className="modal-landscape relative bg-white rounded-3xl shadow-[0_32px_80px_rgba(0,0,0,0.5)] overflow-hidden"
+              initial={{ opacity: 0, scale: 0.88, y: 32 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, scale: 0.93, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Close Button - Glassmorphism */}
+              {/* Gold Top Strip - Premium */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#b8942a] via-[#e8c84a] to-[#b8942a] z-40" />
+
+              {/* Glowing Gold Accent */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent blur-sm z-40" />
+
+              {/* Close Button - Premium Glass */}
               <button
                 onClick={closePropertyModal}
-                className="absolute top-4 right-4 z-30 w-10 h-10 lg:w-11 lg:h-11 modal-close-btn bg-white/90 hover:bg-white text-[#1A1A1A] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 shadow-lg border border-white/30"
+                className="absolute top-3 right-3 z-40 w-10 h-10 bg-white/95 hover:bg-white backdrop-blur-xl text-[#1A1A1A] rounded-full flex items-center justify-center shadow-xl border border-white/50 hover:scale-110 hover:rotate-90 transition-all duration-300 group"
+                aria-label="Close"
               >
-                <X className="w-4 h-4 lg:w-5 lg:h-5" />
+                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
               </button>
 
-              {/* Mobile Layout */}
-              <div className="flex flex-col lg:hidden max-h-[95vh]">
-                <div className="relative h-[300px] sm:h-[360px] bg-gray-900 flex-shrink-0">
-                  <AnimatePresence mode="wait" custom={1}>
-                    <motion.div
-                      key={currentImageIndex}
-                      custom={1}
-                      variants={imageVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      className="absolute inset-0"
-                    >
-                      <img 
-                        src={selectedProperty.images[currentImageIndex]} 
-                        alt={selectedProperty.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
+              {/* LANDSCAPE LAYOUT - Always Side by Side */}
+              <div className="flex h-full">
+
+                {/* LEFT: Image Panel - Premium Gallery */}
+                <div className="relative w-[42%] flex-shrink-0 bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
+                  {/* Main Image with Zoom Effect */}
+                  <img
+                    key={currentImageIndex}
+                    src={selectedProperty.images[currentImageIndex]}
+                    alt={selectedProperty.title}
+                    className="modal-img absolute inset-0 w-full h-full object-cover"
+                  />
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  
+                  {/* Premium Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
+
+                  {/* Image Navigation Controls - Premium */}
                   {selectedProperty.images.length > 1 && (
                     <>
                       <button
                         onClick={(e) => { e.stopPropagation(); prevImage() }}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/30 hover:bg-black/50 backdrop-blur-xl text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 hover:scale-110"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/40 hover:bg-[#d4af37] backdrop-blur-md text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/15 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/30 hover:scale-110"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
                       <button
                         onClick={(e) => { e.stopPropagation(); nextImage() }}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/30 hover:bg-black/50 backdrop-blur-xl text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 hover:scale-110"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/40 hover:bg-[#d4af37] backdrop-blur-md text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/15 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/30 hover:scale-110"
                       >
                         <ChevronRight className="w-4 h-4" />
                       </button>
                     </>
                   )}
 
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-                    {selectedProperty.images.map((_: any, idx: number) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentImageIndex(idx)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          currentImageIndex === idx ? 'bg-white w-6' : 'bg-white/40 w-2'
-                        }`}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="absolute bottom-4 left-4">
-                    <div className="bg-white/95 backdrop-blur-lg px-4 py-2 rounded-xl shadow-xl border border-white/20">
-                      <span className="text-[#1A1A1A] font-bold text-sm">{selectedProperty.price}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-white modal-scroll">
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="px-3 py-0.5 bg-[#d4af37]/10 text-[#d4af37] text-[9px] font-medium uppercase tracking-[0.15em] rounded-full border border-[#d4af37]/20">
-                          {selectedProperty.badge}
-                        </span>
-                        <span className="px-3 py-0.5 bg-[#1A1A1A]/5 text-[#1A1A1A] text-[9px] font-medium uppercase tracking-[0.15em] rounded-full border border-gray-100">
-                          {selectedProperty.status}
-                        </span>
-                      </div>
-                      <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#1A1A1A] leading-tight">
-                        {selectedProperty.title}
-                      </h2>
-                      <div className="flex items-center gap-1.5 text-[#6B7280] mt-0.5">
-                        <MapPin className="w-3.5 h-3.5 text-[#d4af37] flex-shrink-0" />
-                        <span className="text-xs sm:text-sm">{selectedProperty.location}</span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-2">
-                      {[
-                        { icon: Bed, label: 'Beds', value: selectedProperty.bedrooms },
-                        { icon: Bath, label: 'Baths', value: selectedProperty.bathrooms },
-                        { icon: Maximize2, label: 'Area', value: selectedProperty.sqft + ' sq.ft' },
-                        { icon: Car, label: 'Parking', value: selectedProperty.parking },
-                      ].map((item, idx) => (
-                        <div key={idx} className="spec-card p-3 bg-[#FAF8F4] rounded-xl border border-gray-100/80 text-center hover:border-[#d4af37]/30">
-                          <item.icon className="w-4 h-4 text-[#d4af37] mx-auto mb-1.5" />
-                          <div className="text-[8px] sm:text-[9px] text-[#6B7280] uppercase tracking-wider">{item.label}</div>
-                          <div className="font-semibold text-[#1A1A1A] text-xs sm:text-sm mt-0.5">{item.value}</div>
-                        </div>
+                  {/* Image Indicators - Premium Dots + Thumbnails */}
+                  <div className="absolute bottom-0 left-0 right-0 z-20 px-3 pb-3">
+                    {/* Dots - Always Visible */}
+                    <div className="flex items-center justify-center gap-1.5 mb-2">
+                      {selectedProperty.images.map((_: any, idx: number) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentImageIndex(idx)}
+                          className={`rounded-full transition-all duration-300 ${
+                            currentImageIndex === idx
+                              ? 'w-6 h-1.5 bg-[#d4af37] shadow-lg shadow-[#d4af37]/50'
+                              : 'w-2 h-1.5 bg-white/40 hover:bg-white/70'
+                          }`}
+                        />
                       ))}
                     </div>
-
-                    <div className="bg-gradient-to-r from-[#d4af37]/5 to-[#b8942a]/5 rounded-xl p-3 sm:p-4 border border-[#d4af37]/10">
-                      <p className="description-text text-[#6B7280] text-xs sm:text-sm leading-relaxed">
-                        {selectedProperty.description}
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-semibold text-[#1A1A1A] mb-2 uppercase tracking-wider">Premium Amenities</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {selectedProperty.amenities.slice(0, 6).map((amenity: string, idx: number) => (
-                          <div key={idx} className="flex items-center gap-1 px-2.5 py-1.5 bg-[#FAF8F4] rounded-lg border border-gray-100/80 text-[10px] sm:text-xs text-[#6B7280]">
-                            <CheckCircle className="w-3 h-3 text-[#d4af37] flex-shrink-0" />
-                            <span className="whitespace-nowrap">{amenity}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-2.5 pt-2 border-t border-gray-100">
-                      <button 
-                        className="w-full py-3 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-[#d4af37]/30 transition-all duration-300 flex items-center justify-center gap-2 text-sm hover:scale-[1.02]"
-                        onClick={handleCall}
-                      >
-                        <Phone className="w-4 h-4" />
-                        Book a Site Visit
-                      </button>
-                      <button 
-                        className="w-full py-3 bg-[#1A1A1A] hover:bg-[#2d2d2d] text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 text-sm"
-                        onClick={() => {
-                          setEnquiryProperty(selectedProperty.title)
-                          setIsEnquiryModalOpen(true)
-                        }}
-                      >
-                        <Mail className="w-4 h-4" />
-                        Request Callback
-                      </button>
-                      <div className="flex items-center justify-center gap-2 text-[10px] text-[#6B7280] pt-1">
-                        <Shield className="w-3.5 h-3.5" />
-                        <span>100% Verified Properties</span>
-                        <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                        <span>RERA Registered</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Desktop Layout - 65/35 Split */}
-              <div className="hidden lg:flex h-[92vh]">
-                {/* Left - Image Gallery (65%) */}
-                <div className="w-[65%] h-full relative bg-gray-900">
-                  <AnimatePresence mode="wait" custom={1}>
-                    <motion.div
-                      key={currentImageIndex}
-                      custom={1}
-                      variants={imageVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      className="absolute inset-0"
-                    >
-                      <img 
-                        src={selectedProperty.images[currentImageIndex]} 
-                        alt={selectedProperty.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                  
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                  
-                  {selectedProperty.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); prevImage() }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 hover:bg-black/40 backdrop-blur-2xl text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 hover:scale-110 hover:border-white/20"
-                      >
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); nextImage() }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/20 hover:bg-black/40 backdrop-blur-2xl text-white rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 hover:scale-110 hover:border-white/20"
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                    </>
-                  )}
-
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                    {selectedProperty.images.map((_: any, idx: number) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentImageIndex(idx)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          currentImageIndex === idx ? 'bg-white w-8' : 'bg-white/30 w-2.5 hover:bg-white/50'
-                        }`}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="absolute bottom-6 right-6">
-                    <div className="bg-white/95 backdrop-blur-2xl px-6 py-3 rounded-2xl shadow-2xl border border-white/20">
-                      <span className="text-[#1A1A1A] font-bold text-xl">{selectedProperty.price}</span>
+                    {/* Thumbnails - Desktop Only */}
+                    <div className="flex gap-1.5 justify-center">
+                      {selectedProperty.images.map((img: string, idx: number) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentImageIndex(idx)}
+                          className={`thumb-img w-14 h-10 rounded-md overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
+                            currentImageIndex === idx
+                              ? 'border-[#d4af37] shadow-md shadow-[#d4af37]/40 scale-105'
+                              : 'border-white/20 hover:border-white/60 opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          <img src={img} alt="" className="w-full h-full object-cover" />
+                        </button>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="absolute top-6 left-6 flex items-center gap-2">
-                    <span className="px-4 py-1.5 bg-white/90 backdrop-blur-xl text-[#d4af37] text-[10px] font-semibold uppercase tracking-[0.2em] rounded-full border border-white/20 shadow-lg">
+                  {/* Premium Badges */}
+                  <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-20">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white text-[9px] font-bold uppercase tracking-[0.1em] rounded-full shadow-lg">
+                      <Crown className="w-2.5 h-2.5" />
                       {selectedProperty.badge}
                     </span>
-                    <span className="px-4 py-1.5 bg-black/30 backdrop-blur-xl text-white text-[10px] font-semibold uppercase tracking-[0.2em] rounded-full border border-white/10 shadow-lg">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-black/60 backdrop-blur-xl text-white text-[9px] font-semibold uppercase tracking-[0.08em] rounded-full border border-white/15">
+                      <Gem className="w-2.5 h-2.5 text-[#d4af37]" />
                       {selectedProperty.status}
                     </span>
                   </div>
-                </div>
 
-                {/* Right - Information Panel (35%) */}
-                <div className="w-[35%] h-full overflow-y-auto p-6 lg:p-8 bg-white modal-scroll">
-                  <div className="space-y-5">
-                    <div>
-                      <h2 className="text-2xl lg:text-3xl font-serif font-bold text-[#1A1A1A] leading-tight">
-                        {selectedProperty.title}
-                      </h2>
-                      <div className="flex items-center gap-2 text-[#6B7280] mt-1.5">
-                        <MapPin className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
-                        <span className="text-sm">{selectedProperty.location}</span>
-                      </div>
-                    </div>
-
-                    {/* 2x2 Specification Grid */}
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { icon: Bed, label: 'Bedrooms', value: selectedProperty.bedrooms + ' BHK' },
-                        { icon: Bath, label: 'Bathrooms', value: selectedProperty.bathrooms },
-                        { icon: Maximize2, label: 'Area', value: selectedProperty.sqft + ' sq.ft' },
-                        { icon: Car, label: 'Parking', value: selectedProperty.parking },
-                      ].map((item, idx) => (
-                        <div key={idx} className="spec-card p-3 bg-[#FAF8F4] rounded-xl border border-gray-100/80 hover:border-[#d4af37]/30 transition-all duration-300">
-                          <item.icon className="w-4 h-4 text-[#d4af37] mb-1.5" />
-                          <div className="text-[9px] text-[#6B7280] uppercase tracking-wider">{item.label}</div>
-                          <div className="font-semibold text-[#1A1A1A] text-sm mt-0.5">{item.value}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Description - Premium Quote Style */}
-                    <div className="bg-gradient-to-r from-[#d4af37]/5 via-[#d4af37]/3 to-transparent rounded-xl p-4 border-l-2 border-[#d4af37]/30">
-                      <p className="description-text text-[#4A4A5A] text-sm leading-relaxed italic">
-                        "{selectedProperty.description}"
-                      </p>
-                      <div className="mt-2 text-[10px] text-[#6B7280]">
-                        — {selectedProperty.builder}
-                      </div>
-                    </div>
-
-                    {/* Amenities - Elegant Pills */}
-                    <div>
-                      <h4 className="text-[10px] font-semibold text-[#1A1A1A] mb-2.5 uppercase tracking-wider">
-                        Premium Amenities
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProperty.amenities.slice(0, 8).map((amenity: string, idx: number) => (
-                          <span 
-                            key={idx} 
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF8F4] rounded-full border border-gray-100/80 text-[11px] text-[#4A4A5A] hover:border-[#d4af37]/30 hover:bg-white transition-all duration-300 hover:shadow-sm"
-                          >
-                            <CheckCircle className="w-3 h-3 text-[#d4af37] flex-shrink-0" />
-                            {amenity}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* CTA Buttons */}
-                    <div className="pt-3 border-t border-gray-100/80">
-                      <div className="space-y-2.5">
-                        <button 
-                          className="group relative w-full py-3.5 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white rounded-full font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-[#d4af37]/30 flex items-center justify-center gap-2 text-sm overflow-hidden"
-                          onClick={handleCall}
-                        >
-                          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                          <Phone className="w-4 h-4" />
-                          Book a Site Visit
-                        </button>
-                        <button 
-                          className="w-full py-3.5 bg-[#1A1A1A] hover:bg-[#2d2d2d] text-white rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2 text-sm hover:shadow-xl"
-                          onClick={() => {
-                            setEnquiryProperty(selectedProperty.title)
-                            setIsEnquiryModalOpen(true)
-                          }}
-                        >
-                          <Mail className="w-4 h-4" />
-                          Request Callback
-                        </button>
-                        <div className="flex items-center justify-center gap-2.5 text-[10px] text-[#6B7280]">
-                          <Shield className="w-3.5 h-3.5" />
-                          <span>100% Verified Properties</span>
-                          <span className="w-1 h-1 bg-gray-300 rounded-full" />
-                          <span>RERA Registered</span>
-                        </div>
-                      </div>
+                  {/* Price Badge - Premium */}
+                  <div className="absolute bottom-24 right-3 z-20">
+                    <div className="bg-white/95 backdrop-blur-2xl px-4 py-2 rounded-2xl shadow-2xl border border-white/20">
+                      <span className="text-[#1A1A1A] font-bold text-sm md:text-base">{selectedProperty.price}</span>
                     </div>
                   </div>
+                </div>
+
+                {/* RIGHT: Content Panel - Premium Design */}
+                <div className="flex-1 flex flex-col bg-gradient-to-b from-white to-[#FAF8F4] overflow-hidden min-w-0">
+
+                  {/* Header - Premium */}
+                  <div className="px-6 pt-5 pb-3 border-b border-gray-100/80 flex-shrink-0">
+                    <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A1A1A] leading-tight pr-4">
+                      {selectedProperty.title}
+                    </h2>
+                    <div className="flex items-center gap-1.5 text-[#6B7280] mt-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#d4af37] flex-shrink-0" />
+                      <span className="text-sm truncate">{selectedProperty.location}</span>
+                      <span className="ml-auto flex items-center gap-1 text-xs flex-shrink-0">
+                        <Calendar className="w-3 h-3 text-[#d4af37]" />
+                        {selectedProperty.completion}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Specs - Premium Grid */}
+                  <div className="grid grid-cols-4 gap-2 px-6 py-3 flex-shrink-0">
+                    {[
+                      { icon: Bed, label: 'Beds', value: selectedProperty.bedrooms },
+                      { icon: Bath, label: 'Baths', value: selectedProperty.bathrooms },
+                      { icon: Maximize2, label: 'Sq.ft', value: selectedProperty.sqft },
+                      { icon: Car, label: 'Park', value: selectedProperty.parking },
+                    ].map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="spec-card flex flex-col items-center py-2 bg-white rounded-xl border border-gray-100 shadow-sm hover:border-[#d4af37]/30 hover:shadow-md transition-all duration-300"
+                      >
+                        <item.icon className="w-4 h-4 text-[#d4af37] mb-1" strokeWidth={1.6} />
+                        <div className="text-[10px] text-[#6B7280] uppercase tracking-wide font-medium">{item.label}</div>
+                        <div className="font-bold text-[#1A1A1A] text-base leading-none mt-0.5">{item.value}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Description - Premium Quote */}
+                  <div className="mx-6 mb-2 bg-gradient-to-r from-[#d4af37]/8 via-[#d4af37]/4 to-transparent rounded-xl px-4 py-3 border-l-[3px] border-[#d4af37]/40 flex-shrink-0">
+                    <p className="text-[#4A4A5A] text-sm leading-relaxed italic line-clamp-2">
+                      &ldquo;{selectedProperty.description}&rdquo;
+                    </p>
+                    <p className="text-[10px] text-[#d4af37] font-semibold mt-1 uppercase tracking-wider">— {selectedProperty.builder}</p>
+                  </div>
+
+                  {/* Amenities - Premium Pills */}
+                  <div className="px-6 mb-2 flex-shrink-0">
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span className="text-[10px] font-bold text-[#1A1A1A] uppercase tracking-widest">Amenities</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProperty.amenities.slice(0, 6).map((amenity: string, idx: number) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-white rounded-full border border-gray-100 text-[11px] text-[#4A4A5A] shadow-sm hover:border-[#d4af37]/40 hover:shadow-md transition-all duration-200"
+                        >
+                          <CheckCircle className="w-3 h-3 text-[#d4af37] flex-shrink-0" />
+                          {amenity}
+                        </span>
+                      ))}
+                      {selectedProperty.amenities.length > 6 && (
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#d4af37]/8 rounded-full border border-[#d4af37]/20 text-[11px] text-[#b8942a] font-medium">
+                          +{selectedProperty.amenities.length - 6} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="flex-1 min-h-0" />
+
+                  {/* CTAs - Premium */}
+                  <div className="px-6 pb-5 pt-3 border-t border-gray-100 flex-shrink-0">
+                    <div className="flex gap-3 mb-2">
+                      <button
+                        onClick={handleCall}
+                        className="flex-1 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8942a] text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#d4af37]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group"
+                      >
+                        <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                        Call Now
+                      </button>
+                      <button
+                        onClick={() => {
+                          setEnquiryProperty(selectedProperty.title)
+                          setIsEnquiryModalOpen(true)
+                          closePropertyModal()
+                        }}
+                        className="flex-1 py-3 bg-[#1A1A1A] hover:bg-[#2a2a2a] text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 group"
+                      >
+                        <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                        Enquire
+                      </button>
+                    </div>
+                    
+                    {/* Trust Badges - Premium */}
+                    <div className="flex items-center justify-center gap-4 text-[11px] text-[#9CA3AF]">
+                      <span className="flex items-center gap-1.5">
+                        <Shield className="w-3 h-3 text-[#d4af37]" />
+                        Verified
+                      </span>
+                      <span className="w-px h-3 bg-gray-200" />
+                      <span className="flex items-center gap-1.5">
+                        <Award className="w-3 h-3 text-[#d4af37]" />
+                        RERA
+                      </span>
+                      <span className="w-px h-3 bg-gray-200" />
+                      <span className="flex items-center gap-1.5">
+                        <Star className="w-3 h-3 text-[#d4af37] fill-[#d4af37]" />
+                        4.9★
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </motion.div>

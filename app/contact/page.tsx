@@ -205,7 +205,7 @@ const ContactPage = () => {
                         <a 
                           key={i} 
                           href={`tel:${detail.replace(/\s/g, '')}`}
-                          className="text-[#2d2d44] text-sm hover:text-[#d4af37] transition-colors cursor-pointer"
+                          className="text-[#2d2d44] text-sm hover:text-[#d4af37] transition-colors"
                         >
                           {detail}
                         </a>

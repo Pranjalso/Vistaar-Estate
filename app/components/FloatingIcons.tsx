@@ -308,7 +308,7 @@ const FloatingContact = () => {
       <div className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-[9999] flex items-center gap-3 sm:gap-4">
         <button
           onClick={handleWhatsAppClick}
-          className="floating-button floating-button-whatsapp group relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-[46px] md:h-[46px] rounded-full shadow-2xl transition-all duration-300 active:scale-95"
+          className="floating-button floating-button-whatsapp group relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-[46px] md:h-[46px] rounded-full shadow-2xl transition-all duration-300 active:scale-95 cursor-pointer"
           aria-label="WhatsApp"
         >
           <div className="ripple-effect" />
@@ -319,7 +319,7 @@ const FloatingContact = () => {
 
         <button
           onClick={handleEnquiryClick}
-          className="floating-button floating-button-enquiry group relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-[46px] md:h-[46px] rounded-full shadow-2xl transition-all duration-300 active:scale-95"
+          className="floating-button floating-button-enquiry group relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-[46px] md:h-[46px] rounded-full shadow-2xl transition-all duration-300 active:scale-95 cursor-pointer"
           aria-label="Enquiry"
         >
           <div className="ripple-effect" />

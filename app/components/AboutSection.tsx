@@ -130,13 +130,8 @@ const AboutSection = () => {
               variants={fadeUpVariant}
               initial="hidden"
               animate={controls.leftContent}
-              className="space-y-4"
+              className="space-y-4 text-center lg:text-left"
             >
-              <div className="inline-block">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] font-medium">
-                  About Vistaar Estates
-                </span>
-              </div>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#1a1a2e] leading-[1.08]">
                 Exceptional Living
                 <br />

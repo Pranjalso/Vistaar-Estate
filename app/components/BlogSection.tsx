@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, User, ArrowRight, Clock, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Calendar, User, ArrowRight, Clock, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useInView } from '../hooks/useInView'
 import { blogPosts } from '@/lib/blogData'
@@ -245,17 +245,9 @@ const BlogSection = () => {
         >
           {/* Left Side - Heading */}
           <motion.div 
-            className="max-w-2xl lg:max-w-3xl"
+            className="max-w-2xl lg:max-w-3xl text-center lg:text-left"
             variants={headingContainerVariants}
           >
-            {/* Badge */}
-            <motion.div variants={badgeVariants} className="mb-2 sm:mb-3 md:mb-4">
-              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 bg-white/80 backdrop-blur-sm text-[#d4af37] text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] rounded-full border border-[#d4af37]/10 font-medium shadow-sm">
-                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
-                Our Journal
-              </span>
-            </motion.div>
-
             {/* Main Heading */}
             <motion.h2 
               variants={headingContainerVariants}
